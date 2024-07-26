@@ -9,30 +9,49 @@ if (!gl) {
 
 // Define the vertices for the triangle
 const vertices = new Float32Array([
-    // triangle 1.
-    0.0, 0.5, 0.0,
-   -0.5, -0.5, 0.0,
-    0.5, -0.5, 0.0,
 
-    // triangle 2
-    0.5, 0.5, 0.0,
-    0, -0.5, 0.0,
-    1.5, -0.5, 0.0,
-
-    // triangle 3
+    // triangle 1
     -0.5, 0.5, 0.0,
     -1, -0.0, 0.0,
     -0.5, -0.5, 0.0,
 
-
+    // triangle 2
+    -1.5, 0.5, 0.0,
+    -2.0, -0.5, 0.0,
+    -1.0, -0.5, 0.0,
 
 ]);
 
+const hexagonVertices = new Float32Array([
+    Math.cos(0), Math.sin(0), 0.0,
+    Math.cos(Math.PI / 3), Math.sin(Math.PI / 3), 0.0,
+    Math.cos(2 * Math.PI / 3), Math.sin(2 * Math.PI / 3), 0.0,
+    Math.cos(Math.PI), Math.sin(Math.PI), 0.0,
+    Math.cos(4 * Math.PI / 3), Math.sin(4 * Math.PI / 3), 0.0,
+    Math.cos(5 * Math.PI / 3), Math.sin(5 * Math.PI / 3), 0.0,
+]);
 
-// Create a buffer and put the vertices in it
+// Define vertices for a star
+const starVertices = new Float32Array([
+    0.0, 0.6, 0.0,
+    -0.2, 0.2, 0.0,
+    -0.6, 0.2, 0.0,
+    -0.25, -0.1, 0.0,
+    -0.4, -0.5, 0.0,
+    0.0, -0.2, 0.0,
+    0.4, -0.5, 0.0,
+    0.25, -0.1, 0.0,
+    0.6, 0.2, 0.0,
+    0.2, 0.2, 0.0
+]);
+
+const combinedVertices = new Float32Array([...vertices, ...hexagonVertices, ...starVertices]);
+
+// create a buffer and put the vertices in it
 const buffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, combinedVertices, gl.STATIC_DRAW);
+
 
 // Define the vertex shader
 const vsSource = `
@@ -128,8 +147,14 @@ function render() {
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    // Draw the triangle
-    gl.drawArrays(gl.TRIANGLES, 0, vertices.length/3);
+    // draw triangles
+    gl.drawArrays(gl.TRIANGLES, 0, vertices.length / 3);
+
+    // draw hexagon
+    gl.drawArrays(gl.LINE_LOOP, vertices.length / 3, hexagonVertices.length / 3);
+
+    // draw star
+    gl.drawArrays(gl.LINE_LOOP, (vertices.length + hexagonVertices.length) / 3, starVertices.length / 3);
 
     // Loop the render function to animate
     requestAnimationFrame(render);
