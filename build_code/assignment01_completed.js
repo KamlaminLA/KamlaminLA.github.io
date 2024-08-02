@@ -10,9 +10,13 @@ if (!gl) {
 // Define the vertices for the triangle
 const vertices = new Float32Array([
 
-    // triangle 1
+    // square
     -0.5, 0.5, 0.0,
     -1, -0.0, 0.0,
+    -0.5, -0.5, 0.0,
+
+    -0.5, 0.5, 0.0,
+    0.0, -0.0, 0.0,
     -0.5, -0.5, 0.0,
 
     // triangle 2
