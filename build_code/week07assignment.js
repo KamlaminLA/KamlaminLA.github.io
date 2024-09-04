@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 
 let camera, scene, renderer, material;
 let controls;
@@ -114,7 +114,7 @@ class particleSystem {
 
 		const sphereGeometry2 = new THREE.SphereGeometry(0.5, 32, 32); // radius, widthSegments, heightSegments
         const sphere2 = new THREE.Mesh(sphereGeometry2, metalMaterial);
-        sphere2.position.set(0, 0, 1)
+        sphere2.position.set(0, 1.5, 0)
         scene.add(sphere2);
 	}
 

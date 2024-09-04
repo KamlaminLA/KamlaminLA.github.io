@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 import { ShadowMapViewer } from 'https://threejs.org/examples/jsm/utils/ShadowMapViewer.js';
 import { OBJLoader } from 'https://threejs.org/examples/jsm/loaders/OBJLoader.js';
 

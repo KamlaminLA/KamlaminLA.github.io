@@ -1,5 +1,6 @@
 // Importing OrbitControls (make sure the path matches the version you are using)
-import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
+import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
+import { OrbitControls } from 'https://cdn.skypack.dev/three@0.128.0/examples/jsm/controls/OrbitControls.js';
 
 // Set up the scene, camera, and renderer
 const scene = new THREE.Scene();
